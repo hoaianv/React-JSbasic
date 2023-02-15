@@ -32,6 +32,20 @@ class ListTodo extends React.Component {
     toast.success('Delele succeed!')
   }
   handleEditTodo = (todo) => {
+    let { editTodo, ListTodos } = this.state
+    let isEmptyObj = Object.keys(editTodo).length === 0
+    if (isEmptyObj === false && todo.id === editTodo.id) {
+      let ListTodosCopy = [...ListTodos]
+      let objIndex = ListTodosCopy.findIndex((item) => item.id === todo.id)
+      ListTodosCopy[objIndex].title = editTodo.title
+      this.setState({
+        ListTodos: ListTodosCopy,
+        editTodo: {},
+      })
+      toast.success('Update todo succeed!')
+      return
+    }
+
     this.setState({
       editTodo: todo,
     })
