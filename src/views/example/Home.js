@@ -13,6 +13,10 @@ class Home extends React.Component {
     this.props.DeleteUserRedux(item)
   }
 
+  handleCreateUser = () => {
+    this.props.CreateUserRedux()
+  }
+
   render() {
     let listUsers = this.props.DataRedux
     return (
@@ -28,6 +32,7 @@ class Home extends React.Component {
               </div>
             )
           })}
+        <button onClick={() => this.handleCreateUser()}>Create User</button>
       </div>
     )
   }
@@ -41,6 +46,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     DeleteUserRedux: (userDelete) =>
       dispatch({ type: 'DELETE_USER', pay: userDelete }),
+    CreateUserRedux: () => dispatch({ type: 'CREATE_USER' }),
   }
 }
 
